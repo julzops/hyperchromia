@@ -3,13 +3,9 @@ on:
   push:
     branches: [master]
     paths:
-      - docs/**
+      - docs-site/**
       - CHANGELOG.md
-      - scripts/build-docs.sh
-      - scripts/build-docs-page.py
-      - build/assets/docs-template.html
-      - build/assets/docs.css
-      - build/assets/logo.png
+      - scripts/sync-changelog.sh
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,11 +16,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - run: sudo apt-get update && sudo apt-get install -y pandoc
-      - run: scripts/build-docs.sh
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+      - run: scripts/sync-changelog.sh
+      - run: npm ci
+        working-directory: docs-site
+      - run: npm run build
+        working-directory: docs-site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: docs-site/build
   deploy:
     needs: build
     runs-on: ubuntu-latest

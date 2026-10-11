@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Building
 
 Building produces `factory.img` (for the USB installer / a first `dd`) and `update.img` (for
