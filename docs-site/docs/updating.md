@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Updating
 
 HyperChromia keeps two copies of its SYSTEM partition (A/B slots) and applies updates to whichever

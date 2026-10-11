@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Contributing
 
 Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
