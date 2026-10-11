@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Features
 
 - **Read-only root.** SquashFS `SYSTEM` partition + a writable `DATA` partition for
