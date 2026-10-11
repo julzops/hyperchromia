@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/julzops/hyperchromia/compare/v1.0.0...v1.0.1) (2026-10-11)
+
+
+### Bug Fixes
+
+* **docs-site:** pin uuid to 14.0.0 to resolve transitive vulnerability ([bed64e5](https://github.com/julzops/hyperchromia/commit/bed64e5d61f3e1481bf703eed6ba35f301c82661))
+
 ## 1.0.0 (2026-10-07)
 
 
