@@ -1,0 +1,40 @@
+name: Deploy docs site
+on:
+  push:
+    branches: [master]
+    paths:
+      - docs-site/**
+      - CHANGELOG.md
+      - scripts/sync-changelog.sh
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+      - run: scripts/sync-changelog.sh
+      - run: npm ci
+        working-directory: docs-site
+      - run: npm run build
+        working-directory: docs-site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-site/build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

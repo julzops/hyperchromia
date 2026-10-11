@@ -2,8 +2,9 @@ name: Sync develop onto master
 on:
   push:
     branches: [master]
+  workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 jobs:
   rebase:
     runs-on: ubuntu-latest
@@ -12,6 +13,7 @@ jobs:
         with:
           ref: develop
           fetch-depth: 0
+          ssh-key: ${{ secrets.SYNC_DEVELOP_DEPLOY_KEY }}
       - name: Rebase develop onto master
         run: |
           git config user.name "github-actions[bot]"
