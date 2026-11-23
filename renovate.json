@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": ["config:recommended", "group:all"],
   "baseBranchPatterns": ["develop"],
   "semanticCommits": "enabled",
   "semanticCommitScope": "",
@@ -35,10 +35,6 @@
     }
   ],
   "packageRules": [
-    {
-      "matchManagers": ["github-actions"],
-      "groupName": "github-actions"
-    },
     {
       "matchDepNames": ["buildroot/buildroot"],
       "prBodyNotes": ["- [ ] Verified with a local build before merging"]
