@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
-    if: github.actor == 'tux-84'
+    if: github.actor == 'julzops'
     environment: manual-build
     runs-on: [self-hosted, macOS]
     steps:
